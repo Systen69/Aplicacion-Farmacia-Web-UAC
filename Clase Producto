@@ -1,0 +1,117 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CapaNegocio
+{
+    public class Producto
+    {
+        // definir atributos
+        private string nombre;
+        private string precio;
+        private string presentacion;
+        private string fechaVencimiento;
+        private string fechaFabricacion;
+        private string unidadDisponibles;
+
+        public string Nombre { get => nombre; set => nombre = value; }
+        public string Precio { get => precio; set => precio = value; }
+        public string Presentacion { get => presentacion; set => presentacion = value; }
+        public string FechaVencimiento { get => fechaVencimiento; set => fechaVencimiento = value; }
+        public string FechaFabricacion { get => fechaFabricacion; set => fechaFabricacion = value; }
+        public string UnidadDisponibles { get => unidadDisponibles; set => unidadDisponibles = value; }
+
+        //Propiedades: Como parte de la clase
+        //Metodos
+        public string Caducar()
+        {
+            return "Metodo caducar no esta disponible";
+        }
+        public string Curar()
+        {
+            return "Metodo curar no esta disponible";
+        }
+        public string Ayudar()
+        {
+            return "Metodo ayudar no esta disponible";
+        }
+    }
+}
+using System;                                    FORMULARIO
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace CapaPresentacion
+{
+    public partial class Producto : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void cldFechaVencimiento_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+        static CapaNegocio.Producto producto1 = new CapaNegocio.Producto();
+        protected void btnLeer_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombre.Text;
+            string precio = txtPrecio.Text;
+            string presentacion = txtPresentacion.Text;
+            string fechaVencimiento = cldFechaVencimiento.SelectedDate.ToString();
+            string fechaFabricacion = cldFechaFabricacion.SelectedDate.ToString();
+            //Validar si los cuadros de texto estan llenos
+            if (nombre == " ")
+                Response.Write("<script>alert(´Ingrese Nombres´);</script>");
+            else if (precio == " ")
+                Response.Write("<script>alert(´Ingrese Precio´);</script>");
+            else if (presentacion == " ")
+                Response.Write("<script>alert(´Ingrese Presentacion´);</script>");
+            else if (fechaVencimiento == " ")
+                Response.Write("<script>alert(´Ingrese Fecha de Vencimiento´);</script>");
+            else if (fechaFabricacion == " ")
+                Response.Write("<script>alert(´Ingrese Fecha de Fabricacion´);</script>");
+            producto1.Nombre = nombre;
+            producto1.Precio = precio;
+            producto1.Presentacion = presentacion;
+            producto1.FechaVencimiento = fechaVencimiento;
+            producto1.FechaFabricacion = fechaFabricacion;
+            //Enviar un mensaje de conformidad 
+            Response.Write("Se ha agregado los datos correctamente");
+        }
+
+        protected void btnEscribir_Click(object sender, EventArgs e)
+        {
+            // Escribir los atributos 
+            Response.Write("Nombre: " + producto1.Nombre + "Precio: " + producto1.Precio +
+                "Presentacion: " + producto1.Presentacion + "Fecha de Vencimiento: " + producto1.FechaVencimiento
+                + "Fecha de Fabricacion: " + producto1.FechaFabricacion);
+        }
+
+        protected void btnCaducar_Click(object sender, EventArgs e)
+        {
+            lblRespuestas.Text = producto1.Caducar();
+        }
+
+        protected void btnCurar_Click(object sender, EventArgs e)
+        {
+            lblRespuestas.Text = producto1.Curar();
+        }
+
+        protected void Ayudar_Click(object sender, EventArgs e)
+        {
+            lblRespuestas.Text = producto1.Ayudar();
+        }
+
+        protected void btnAtras_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
+        }
+    }
