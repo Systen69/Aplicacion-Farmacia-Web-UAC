@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace CapaPresentacion
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void btnTecnico_Click(object sender, EventArgs e)
+        {
+            //Llamar al formulario 
+            Response.Redirect("Tecnico.aspx");
+        }
+
+        protected void btnQf_Click(object sender, EventArgs e)
+        {
+            //Llamar al formulario 
+            Response.Redirect("QF.aspx");
+        }
+
+        protected void btnCliente_Click(object sender, EventArgs e)
+        {
+            //Llamar al formulario 
+            Response.Redirect("Cliente.aspx");
+        }
+
+        protected void btnProducto_Click(object sender, EventArgs e)
+        {
+            //Llamar al formulario 
+            Response.Redirect("Producto.aspx");
+        }
+
+        protected void btnLocal_Click(object sender, EventArgs e)
+        {
+            //Llamar al formulario 
+            Response.Redirect("Local.aspx");
+        }
+
+        protected void btnCaja_Click(object sender, EventArgs e)
+        {
+            //Llamar al formulario 
+            Response.Redirect("Caja.aspx");
+        }
+
+        protected void btnProveedor_Click(object sender, EventArgs e)
+        {
+            //Llamar al formulario 
+            Response.Redirect("Proveedor.aspx");
+        }
+    }
+}
