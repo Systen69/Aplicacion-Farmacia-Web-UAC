@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CapaNegocio
+{
+    public class Local
+    {
+        // definir atributos
+        private string direccion;
+        private string tamaño;
+        private string permisos;
+        private string aforo;
+
+        public string Direccion { get => direccion; set => direccion = value; }
+        public string Tamaño { get => tamaño; set => tamaño = value; }
+        public string Permisos { get => permisos; set => permisos = value; }
+        public string Aforo { get => aforo; set => aforo = value; }
+
+        //Propiedades: Como parte de la clase
+
+
+        //Metodos
+        public string Almacenar()
+        {
+            return "Metodo Almacenar no esta implementado";
+        }
+        public string AcogerClientes()
+        {
+            return "Metodo AcogerClientes no esta implementado";
+        }
+    }
+}
+
+FORM
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace CapaPresentacion
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+        //Declarar un objeto instanciado la clase
+        private static CapaNegocio.Local local1 = new CapaNegocio.Local();
+
+        protected void btnLeer_Click(object sender, EventArgs e)
+        {
+            string direccion = txtDireccion.Text;
+            string tamaño = txtTamaño.Text;
+            string permisos = txtPermisos.Text;
+            string aforo = txtAforo.Text;
+
+            if (direccion == "")
+                Response.Write("Ingrese direccion");
+            else if (tamaño == string.Empty)
+                Response.Write("Ingrese tamaño");
+            else if (permisos == string.Empty)
+                Response.Write("Ingrese permisos");
+            else if (aforo == string.Empty)
+                Response.Write("Ingrese aforo");
+            {
+                local1.Direccion = direccion;
+                local1.Tamaño = tamaño;
+                local1.Permisos = permisos;
+                local1.Aforo = aforo;
+                //Enviar un mensaje de conformalidad;
+                Response.Write("Se a agregado los atributos al objeto");
+            }
+        }
+
+        protected void btnEscribir_Click(object sender, EventArgs e)
+        {
+            //Escribir los atributos del objeto
+            Response.Write("Direccion:" + local1.Direccion + "Tamano" + local1.Tamaño +
+                "Permisos" + local1.Permisos + "Aforo" + local1.Aforo);
+        }
+
+        protected void btnAlmacenar_Click(object sender, EventArgs e)
+        {
+            Response.Write(local1.Almacenar());
+        }
+
+        protected void btnAcojerClientes_Click(object sender, EventArgs e)
+        {
+            Response.Write(local1.AcogerClientes());
+        }
+    }
+}
