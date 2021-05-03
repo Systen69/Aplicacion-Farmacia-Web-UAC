@@ -1,0 +1,115 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CapaNegocio
+{
+    public class Proveedor
+    {
+        // definir atributos
+        private string nombre;
+        private string ubicacion;
+        private string pedidos;
+        private string telefono;
+
+        public string Direccion { get => nombre; set => nombre = value; }
+        public string Tamaño { get => ubicacion; set => ubicacion = value; }
+        public string Permisos { get => pedidos; set => pedidos = value; }
+        public string Aforo { get => telefono; set => telefono = value; }
+
+        //Propiedades: Como parte de la clase
+
+
+        //Metodos
+        public string AgregarProducto()
+        {
+            return "Metodo Agregar Producto no esta implementado";
+        }
+        public string QuitarProducto()
+        {
+            return "Metodo Quitar Producto no esta implementado";
+        }
+        public string CantPedidos()
+        {
+            return "Metodo Cant Pedidos ventas no esta implementado";
+        }
+        public string EnviarProductos()
+        {
+            return "Metodo Enviar Productos no esta implementado";
+        }
+
+    }
+}
+
+FORMULARIO
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace CapaPresentacion
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+        //Declarar un objeto instanciado la clase
+        private static CapaNegocio.Proveedor prov1 = new CapaNegocio.prov1();
+
+        protected void btnLeer_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombres.Text;
+            string ubicacion = txtUbicacion.Text;
+            string pedidos = txtPedidos.Text;
+            string telefono = txtTelefono.Text;
+
+            if (nombre == "")
+                Response.Write("Ingrese direccion");
+            else if (ubicacion == string.Empty)
+                Response.Write("Ingrese tamaño");
+            else if (pedidos == string.Empty)
+                Response.Write("Ingrese permisos");
+            else if (telefono == string.Empty)
+                Response.Write("Ingrese aforo");
+            {
+                prov1.Nombre = nombre;
+                prov1.Ubicacion = ubicacion;
+                prov1.Pedidos = pedidos;
+                prov1.Telefonos = telefono;
+                //Enviar un mensaje de conformalidad;
+                Response.Write("Se a agregado los atributos al objeto");
+            }
+        }
+
+        protected void btnEscribir_Click(object sender, EventArgs e)
+        {
+            //Escribir los atributos del objeto
+            Response.Write("Nombre:" + prov1.Nombre + "Ubicacion" + prov1.Ubicacion +
+                "Pedidos" + prov1.Pedidos+ "Telefono" + prov1.Telefono);
+        }
+
+        protected void btnAgregarProducto_Click(object sender, EventArgs e)
+        {
+            Response.Write(prov1.AgregarProducto());
+        }
+
+        protected void btnQuitarProducto_Click(object sender, EventArgs e)
+        {
+            Response.Write(prov1.QuitarProducto());
+        }
+        protected void btnCanPedido_Click(object sender, EventArgs e)
+        {
+            Response.Write(prov1.CanPedid());
+        }
+        protected void btnEnviarProducto_Click(object sender, EventArgs e)
+        {
+            Response.Write(prov1.EnviarProducto());
+        }
+    }
+}
