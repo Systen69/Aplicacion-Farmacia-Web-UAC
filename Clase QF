@@ -1,0 +1,118 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CapaNegocio
+{
+    public class QF
+    {
+        //Definir Atributos
+        private string apellidos;
+        private string nombres;
+        private string experienciaLaboral;
+        private string edad;
+        private string dni;
+        //Propiedades
+        public string Apellidos { get => apellidos; set => apellidos = value; }
+        public string Nombrees { get => nombres; set => nombres = value; }
+        public string ExperienciaLaboral { get => experienciaLaboral; set => experienciaLaboral = value; }
+        public string Edad { get => edad; set => edad = value; }
+        public string Dni { get => dni; set => dni = value; }
+
+        public string Controlar()
+        {
+            return "No se encuentra disponible";
+        }
+        public string Estudiar()
+        {
+            return "No se encuentra disponible";
+        }
+        public string Atender()
+        {
+            return "No se encuentra disponible";
+        }
+    }
+
+}
+
+
+FORMULARIO
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace CapaPresentacion
+{
+    public partial class QF : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+        //Declarar un objeto instanciando la clase
+        static CapaNegocio.QF qf1 = new CapaNegocio.QF();
+        protected void btnLeer_Click(object sender, EventArgs e)
+        {
+            string apellidos = txtApellidos.Text;
+            string nombres = txtNombres.Text;
+            string experienciaLaboral = txtExperienciaLaboral.Text;
+            string edad = txtEdad.Text;
+            string dni = txtDni.Text;
+            //Validar si los cuadros de texto estan llenos
+            if (apellidos == " ")
+                Response.Write("<script>alert(´Ingrese Apellidos´);</script>");
+            else if (nombres == " ")
+                Response.Write("<script>alert(´Ingrese Nombres´);</script>");
+            else if (experienciaLaboral == " ")
+                Response.Write("<script>alert(´Ingrese Experiencia Laboral´);</script>");
+            else if (edad == " ")
+                Response.Write("<script>alert(´Ingrese Estudios´);</script>");
+            else if (dni == " ")
+                Response.Write("<script>alert(´Ingrese Domicilio´);</script>");
+            qf1.Apellidos = apellidos;
+            qf1.Nombrees = nombres;
+            qf1.ExperienciaLaboral = experienciaLaboral;
+            qf1.Edad = edad;
+            qf1.Dni = dni;
+            //Enviar un mensaje de conformidad 
+            Response.Write("Se ha agregado los datos correctamente");
+        }
+
+        protected void btnEscribir_Click(object sender, EventArgs e)
+        {
+            // Escribir los atributos 
+            Response.Write("Apellidos: " + qf1.Apellidos + "Nombres: " + qf1.Nombrees +
+                "Experiencia Laboral: " + qf1.ExperienciaLaboral + "Edad: " + qf1.Edad
+                + "Dni: " + qf1.Dni);
+        }
+
+        protected void btnControlar_Click(object sender, EventArgs e)
+        {
+            lblRespuesta.Text = qf1.Controlar();
+        }
+
+        protected void btnEstudiar_Click(object sender, EventArgs e)
+        {
+            lblRespuesta.Text = qf1.Estudiar();
+        }
+
+        protected void btnAtender_Click(object sender, EventArgs e)
+        {
+            lblRespuesta.Text = qf1.Atender();
+        }
+    }
+}
+
+Formulario en Default
+ protected void btnQf_Click(object sender, EventArgs e)
+{
+    //Llamar al formulario 
+    Response.Redirect("QF.aspx");
+}
+
