@@ -1,0 +1,105 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CapaNegocio
+{
+    public class Cliente
+    {
+        //Atributos
+        private string nombres;
+        private string apellidos;
+        private string sexo;
+        private string edad;
+        private string dni;
+        //Propiedades : parte de la clase que permite acceder a los atributos 
+        public string Nombres { get => nombres; set => nombres = value; }
+        public string Apellidos { get => apellidos; set => apellidos = value; }
+        public string Sexo { get => sexo; set => sexo = value; }
+        public string Edad { get => edad; set => edad = value; }
+        public string Dni { get => dni; set => dni = value; }
+        //Metodos
+        public string Comprar()
+        {
+            return "El método comprar no esta implementado.";
+        }
+        public string Consultar()
+        {
+            return "El método consultar no esta implementado.";
+        }
+        public string Elegir()
+        {
+            return "El método elegir no esta implementado.";
+        }
+        public string Recoger()
+        {
+            return "El método recoger no esta implementado.";
+        }
+
+}
+
+FORMULARIO
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace CapaPresentacion
+{
+    public partial class WebForm2 : System.Web.UI.Page
+    {
+        //Declarar un objeto instanciado la clase
+        private static CapaNegocio.Cliente cliente1 = new CapaNegocio.Cliente();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmPrincipal.aspx");
+        }
+
+        protected void btnLeer_Click(object sender, EventArgs e)
+        {
+            string nombres = txtNombres.Text;
+            string apellidos = txtApellidos.Text;
+            string sexo = txtSexo.Text;
+            string edad = txtEdad.Text;
+            string dni = txtDni.Text;
+
+
+            if (nombres == "")
+                Response.Write("Ingrese nombres del cliente.");
+            else if (apellidos == "")
+                Response.Write("Ingrese apellidos del cliente.");
+            else if (sexo == "")
+                Response.Write("Ingrese sexo del cliente.");
+            else if (dni == string.Empty)
+                Response.Write("Ingrese DNI del cliente.");
+            else if (edad == "")
+                Response.Write("Ingrese la edad del cliente.");
+            {
+                cliente1.Nombres = nombres;
+                cliente1.Apellidos = apellidos;
+                cliente1.Sexo = sexo;
+                cliente1.Edad = edad;
+                cliente1.Dni = dni;
+                //Enviar un mensaje de conformalidad;
+                Response.Write("<script>alert('Se han agregado los atributos al objeto');</script>");
+            }
+        }
+
+        protected void btnEscribir_Click(object sender, EventArgs e)
+        {
+            //Escribir los atributos del objeto
+            Response.Write("Nombres del Cliente : " + cliente1.Nombres + "<br>Apellidos : " + cliente1.Apellidos +
+                "<br>Sexo : " + cliente1.Sexo + "<br>Edad : " + cliente1.Edad + "<br>DNI : " + cliente1.Dni);
+        }
+    }
+}
